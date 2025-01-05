@@ -53,14 +53,26 @@ public class Network {
     *  If ths network is full, does nothing and returns false;
     *  If the given name is already a user in this network, does nothing and returns false;
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
+
     public boolean addUser(String name) {
-       
-      if(userCount==users.length||indexOfName(name)){
+      if(userCount==users.length || found(name)){
         return false;
       }
      this.users[userCount]=new User(name);
     return true;
     }
+    public boolean found (String name){
+        if(userCount==0 || users==null){
+            return false;  
+        }
+        for (int i = 0; i <userCount; i++) {
+            if(users[i].getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
     /** Makes the user with name1 follow the user with name2. If successful, returns true.

@@ -33,13 +33,13 @@ public class Network {
         if(userCount==0||users==null)
         return null;
         for (int i = 0; i < userCount; i++) {
-            if(indexOfName(name)!=-1){
-                return this.users[indexOfName(name)];
+            if(indexOfNameU(name)!=-1){
+                return this.users[indexOfNameU(name)];
             }
         }
         return null;
     }
-    public int indexOfName(String name){
+    public int indexOfNameU(String name){
         for(int i=0;i<userCount;i++){
             if(this.users[i].getName().equals(name)){
                 return i;

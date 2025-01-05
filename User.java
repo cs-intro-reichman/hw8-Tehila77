@@ -45,7 +45,7 @@
     public boolean follows(String name) {
         String theName= name;
         if('a'<= name.charAt(0)&&  name.charAt(0)>='z'){
-            char begining=  (char)(name.charAt(0)-'a'-'A');
+            char begining=  (char)(name.charAt(0)-'a'+'A');
             theName=begining+name.substring(1);
         }
         for(int i=0;i<this.fCount;i++){

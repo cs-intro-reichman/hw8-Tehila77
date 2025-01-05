@@ -33,19 +33,19 @@ public class Network {
         if(userCount==0||users==null)
         return null;
         for (int i = 0; i < userCount; i++) {
-            if(indexOfName(name)){
-                return this.users[i];
+            if(indexOfName(name)!=-1){
+                return this.users[indexOfName(name)];
             }
         }
         return null;
     }
-    public boolean indexOfName(String name){
+    public int indexOfName(String name){
         for(int i=0;i<userCount;i++){
             if(this.users[i].getName().equals(name)){
-                return true;
+                return i;
             }
         }
-            return false;
+            return -1;
     
         }
 
@@ -124,7 +124,8 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-       //// Replace the following statement with your code
-       return null;
+return null;
+     
     }
+   
 }

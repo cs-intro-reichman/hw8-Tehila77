@@ -117,22 +117,15 @@ public class Network {
             return theMost;
          }
          int maxCount=0;
-         int correctCount=0;
            for (int i = 0; i < userCount; i++) {
-            String theName= users[i].getName();
-            for (int j = 1; i < userCount; j++) {
-            if(users[j].follows(theName)){
-                correctCount++;
-            }
-        }
-        if(correctCount>maxCount) {
-            maxCount=correctCount;
+            if(followeeCount(users[i].getName())> maxCount)
+            {
+             maxCount=followeeCount(users[i].getName());
             theMost=users[i].getName();
+            }
+            }
+            return theMost;
         }
-    }  
-    return theMost;
-
-    }
 
     /** Returns the number of times that the given name appears in the follows lists of all
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */

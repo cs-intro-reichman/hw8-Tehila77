@@ -58,7 +58,7 @@ public class Network {
       if(userCount==users.length || found(name)){
         return false;
       }
-     this.users[userCount]=new User(name);
+     this.users[this.userCount++]=new User(name);
     return true;
     }
     public boolean found (String name){
@@ -92,11 +92,11 @@ public class Network {
      if(userCount==1)return users[0].getName();
         String theName=users[0].getName();
         int maxMnumber=users[0].getfCount();
-       for (int i = 1; i < users.length; i++) {
-        int countCorrect=this.users[i].countMutual(this.users[i+1]);
+       for (int i = 1; i < userCount; i++) {
+        int countCorrect=this.users[i].countMutual(this.users[i-1]);
         if(maxMnumber< countCorrect){
             maxMnumber=countCorrect;
-         theName=users[i+1].getName();
+         theName=users[i].getName();
         }
        }
         return theName;

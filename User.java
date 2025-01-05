@@ -43,11 +43,11 @@
 
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
-        String theName= name;
-        if('a'<= name.charAt(0)&&  name.charAt(0)>='z'){
-            char begining=  (char)(name.charAt(0)-'a'+'A');
-            theName=begining+name.substring(1);
-        }
+        String theName=name;
+        if (name.charAt(0) >= 'a' && name.charAt(0) <= 'z') {
+            char beginning = Character.toUpperCase(name.charAt(0)); 
+            theName = beginning + name.substring(1); 
+        } 
         for(int i=0;i<this.fCount;i++){
             if(this.follows[i].equals(theName)){
                 return true;
@@ -108,10 +108,16 @@
     }
     /** Returns this user's name, and the names that s/he follows. */
     public String toString() {
-        String ans = name + " -> ";
+        String theName=this.name;
+        if (this.name.charAt(0) >= 'a' && this.name.charAt(0) <= 'z') {
+            char beginning = Character.toUpperCase(this.name.charAt(0)); 
+            theName = beginning + this.name.substring(1); 
+        } 
+        String ans =  theName+ " -> ";
         for (int i = 0; i < fCount; i++) {
             ans = ans + follows[i] + " ";
         }
+
         return ans;
     }
 }

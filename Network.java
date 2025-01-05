@@ -8,6 +8,7 @@ public class Network {
 
     /** Creates a network with a given maximum number of users. */
     public Network(int maxUserCount) {
+    
         this.users = new User[maxUserCount];
         this.userCount = 0;
     }
@@ -29,22 +30,38 @@ public class Network {
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
-        for (int i = 0; i < users.length; i++) {
-            if(users[i].follows(name)){
+        if(userCount==0||users==null)
+        return null;
+        for (int i = 0; i < userCount; i++) {
+            if(indexOfName(name)){
                 return this.users[i];
             }
         }
         return null;
     }
+    public boolean indexOfName(String name){
+        for(int i=0;i<userCount;i++){
+            if(this.users[i].getName().equals(name)){
+                return true;
+            }
+        }
+            return false;
+    
+        }
 
     /** Adds a new user with the given name to this network.
     *  If ths network is full, does nothing and returns false;
     *  If the given name is already a user in this network, does nothing and returns false;
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
-        //// Replace the following statement with your code
+       
+      if(userCount==users.length||indexOfName(name)){
         return false;
+      }
+     this.users[userCount]=new User(name);
+    return true;
     }
+
 
     /** Makes the user with name1 follow the user with name2. If successful, returns true.
      *  If any of the two names is not a user in this network,

@@ -100,40 +100,38 @@ public class Network {
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
-     if(userCount==0||users==null){
-        return null;
-     }
-     if(userCount==1)return users[0].getName();
-        String theName=users[0].getName();
-        int maxMnumber=users[0].getfCount();
-       for (int i = 1; i < userCount; i++) {
-        int countCorrect=this.users[i].countMutual(this.users[i-1]);
-        if(maxMnumber< countCorrect){
-            maxMnumber=countCorrect;
-         theName=users[i].getName();
+        if(userCount==0||users==null){
+            return null;
+         }
+        return mostPopularUser();
         }
-       }
-        return theName;
-    }
 
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
         if(userCount==0||users==null){
             return null;
+         }
+         String theMost=users[0].getName();
+         if(userCount==1){
+            return theMost;
+         }
+         int maxCount=0;
+         int correctCount=0;
+           for (int i = 0; i < userCount; i++) {
+            String theName= users[i].getName();
+            for (int j = 1; i < userCount; j++) {
+            if(users[j].follows(theName)){
+                correctCount++;
+            }
         }
-        String theMost=users[0].getName();
-        if(userCount==1){
-        return theMost;
+        if(correctCount>maxCount) {
+            maxCount=correctCount;
+            theMost=users[i].getName();
         }
-        int theMax=followeeCount(theMost);
-       for (int i = 1; i < userCount; i++) {
-       if(followeeCount(users[i].getName())>theMax){
-       theMax=followeeCount(users[i].getName());
-       theMost=users[i].getName();
-       }
-    }
-       return theMost;
+    }  
+    return theMost;
+
     }
 
     /** Returns the number of times that the given name appears in the follows lists of all
@@ -150,8 +148,10 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
+
 return null;
      
     }
    
 }
+

@@ -67,22 +67,57 @@ public class Network {
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
-        //// Replace the following statement with your code
-        return false;
+       if(getUser(name1)== null|| getUser(name2)== null)return false;
+        return  getUser(name1).addFollowee(name2);
     }
     
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
-        //// Replace the following statement with your code
+     if(userCount==0||users==null){
         return null;
+     }
+     if(userCount==1)return users[0].getName();
+        String theName=users[0].getName();
+        int maxMnumber=users[0].getfCount();
+       for (int i = 1; i < users.length; i++) {
+        int countCorrect=this.users[i].countMutual(this.users[i+1]);
+        if(maxMnumber< countCorrect){
+            maxMnumber=countCorrect;
+         theName=users[i+1].getName();
+        }
+       }
+        return theName;
     }
 
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
-        //// Replace the following statement with your code
-        return null;
+        if(userCount==0||users==null){
+            return null;
+        }
+        String theMost=users[0].getName();
+        if(userCount==1){
+        return theMost;
+        }
+        int theMax=countFollwers(theMost);
+       for (int i = 1; i < userCount; i++) {
+       if(countFollwers(users[i].getName())>theMax){
+       theMax=countFollwers(users[i].getName());
+       theMost=users[i].getName();
+       }
+    }
+       return theMost;
+    }
+    public int countFollwers(String name){
+        int count=0;
+        for (int i = 0; i < userCount; i++) {
+            if(this.users[i].follows(name)){
+                count++;
+            }
+        }
+        return count;
+
     }
 
     /** Returns the number of times that the given name appears in the follows lists of all

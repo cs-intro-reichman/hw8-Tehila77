@@ -32,13 +32,24 @@ public class Network {
     public User getUser(String name) {
         if(userCount==0||users==null)
         return null;
+        String theName=upperName1(name);
         for (int i = 0; i < userCount; i++) {
-            if(indexOfNameU(name)!=-1){
-                return this.users[indexOfNameU(name)];
+            if(indexOfNameU(theName)!=-1){
+                return this.users[indexOfNameU(theName)];
             }
         }
         return null;
     }
+    public String upperName1(String name){
+        String theName=name;
+        if (name.charAt(0) >= 'a' && name.charAt(0) <= 'z') {
+            char beginning = Character.toUpperCase(name.charAt(0)); 
+            theName = beginning + name.substring(1); 
+        } 
+        return theName;
+
+    }
+
     public int indexOfNameU(String name){
         for(int i=0;i<userCount;i++){
             if(this.users[i].getName().equals(name)){

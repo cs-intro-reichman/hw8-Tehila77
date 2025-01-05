@@ -100,16 +100,19 @@ public class Network {
         if(userCount==1){
         return theMost;
         }
-        int theMax=countFollwers(theMost);
+        int theMax=followeeCount(theMost);
        for (int i = 1; i < userCount; i++) {
-       if(countFollwers(users[i].getName())>theMax){
-       theMax=countFollwers(users[i].getName());
+       if(followeeCount(users[i].getName())>theMax){
+       theMax=followeeCount(users[i].getName());
        theMost=users[i].getName();
        }
     }
        return theMost;
     }
-    public int countFollwers(String name){
+
+    /** Returns the number of times that the given name appears in the follows lists of all
+     *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
+    private int followeeCount(String name) {
         int count=0;
         for (int i = 0; i < userCount; i++) {
             if(this.users[i].follows(name)){
@@ -117,14 +120,6 @@ public class Network {
             }
         }
         return count;
-
-    }
-
-    /** Returns the number of times that the given name appears in the follows lists of all
-     *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
-    private int followeeCount(String name) {
-        //// Replace the following statement with your code
-        return 0;
     }
 
     // Returns a textual description of all the users in this network, and who they follow.

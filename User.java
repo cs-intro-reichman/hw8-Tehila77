@@ -70,6 +70,7 @@
         return false;
       }else{
         this.follows[fCount++]= name;
+        ++fCount;
          return true;
     }
 

@@ -4,7 +4,6 @@ public class TestHandler {
     public TestHandler() {
         this.tester = new Tester();
     }
-
     public int getNumberOfTests(TesterQuestionEnum question){
         switch (question) {
             case USER_FOLLOWS:

@@ -74,7 +74,7 @@
       if(this.fCount>=maxfCount){
         return false;
       }
-      if(this.follows(name,true)){
+      if(this.follows(name,true)||this.follows(name)){
         return false;
       }else{
         this.follows[fCount++]= name;

@@ -86,7 +86,7 @@
     /** Removes the given name from the follows list of this user. If successful, returns true.
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
-        if(this.follows==null || this.follows.length==0)return false;
+        if(this.follows==null || this.fCount==0)return false;
        if(follows(name)){
         int indexName= indexOfName(name);
         --fCount;

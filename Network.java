@@ -104,9 +104,29 @@ public class Network {
         if(this.userCount==0||this.users==null|| name.equals(null)){
             return null;
          }
-        return mostPopularUser();
+         User user = getUser(name);
+         if (user == null) {
+             return null; 
+         }
+         String recommended = null;
+        int maxMutual = -1;
+        for (int i = 0; i < userCount; i++) {
+            User potentialF = users[i];
+            if (potentialF.getName().equals(name)) {
+                continue;
+            }
+            int commonFollowees = user.countMutual(potentialF);
+            if (commonFollowees > maxMutual) {
+                maxMutual = commonFollowees;
+                recommended = potentialF.getName();
+            }
         }
-
+        if (recommended == null) {
+            recommended = mostPopularUser();
+        }
+    
+        return recommended;
+    }  
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {

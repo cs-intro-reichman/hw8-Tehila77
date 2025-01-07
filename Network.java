@@ -101,7 +101,7 @@ public class Network {
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
-        if(userCount==0||users==null){
+        if(userCount==0||users==null|| name.equals(null)){
             return null;
          }
         return mostPopularUser();
@@ -142,28 +142,11 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String allPrint="";
+        String allPrint="Network";
 for (int i = 0; i < this.userCount; i++) {
-    String theName= users[i].getName();
-    String ans =  theName+ " -> ";
-    for (int j = 0; j < users[i].getfCount(); j++) {
-        ans = ans + users[i].getfFollows()[j] + " ";
-        if(users[i].getfCount()-1==j){
-            allPrint = ans.substring(0, ans.length()-1);
-        }
-         allPrint= allPrint +"/n";
-         if( this.userCount-1==i){
-            allPrint = allPrint.substring(0, ans.length()-1);
-            return allPrint;
-         }
-       
-        
-    }
-    
+  allPrint="/n"+ users[i].toString();
 }
-return null;
-     
-    }
-   
+return allPrint;  
+}
 }
 

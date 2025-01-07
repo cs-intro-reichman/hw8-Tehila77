@@ -101,7 +101,7 @@ public class Network {
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
-        if(userCount==0||users==null|| name.equals(null)){
+        if(this.userCount==0||this.users==null|| name.equals(null)){
             return null;
          }
         return mostPopularUser();
@@ -131,9 +131,10 @@ public class Network {
     /** Returns the number of times that the given name appears in the follows lists of all
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
     private int followeeCount(String name) {
+        String theName=upperName1(name);
         int count=0;
         for (int i = 0; i < userCount; i++) {
-            if(this.users[i].follows(name)){
+            if(this.users[i].follows(theName)){
                 count++;
             }
         }
@@ -142,7 +143,7 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String allPrint="Network";
+        String allPrint="Network:";
 for (int i = 0; i < this.userCount; i++) {
   allPrint=allPrint+"/n"+ users[i].toString();
 }
